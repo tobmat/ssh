@@ -1,0 +1,15 @@
+---
+- hosts: ssh
+  gather_facts: false
+
+  vars:
+    ssh_action: copy_ssh_key             # valid action us copy_ssh_key
+
+  vars_prompt:
+
+  - name: ssh_password
+    prompt: "Enter password"
+    private: yes
+
+  roles:
+    - ../../ssh

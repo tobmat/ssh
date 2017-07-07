@@ -1,0 +1,8 @@
+---
+- name: grab list of current playbooks
+  shell: ls ../tasks | grep -v main | cut -d "." -f 1
+  register: playbook_list
+
+- debug:
+    msg: "Must assign 'ssh_action' var in playbook.  Valid values are: {{ playbook_list.stdout_lines }}"
+

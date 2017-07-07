@@ -1,0 +1,3 @@
+---
+# trigger action taken via action var, default is none
+- include: "{{ ssh_action }}.yml"

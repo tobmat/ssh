@@ -1,0 +1,16 @@
+---
+#- name: copy ssh key
+#  command: sshpass -p {{ ssh_password }} ssh-copy-id -o StrictHostKeyChecking=no {{ user }}@{{ inventory_hostname }}
+#  delegate_to: 127.0.0.1
+
+- name: install pexpect if needed
+  pip:
+    name: pexpect
+  delegate_to: 127.0.0.1
+
+- name: copy ssh key
+  expect:
+    command: ssh-copy-id -o StrictHostKeyChecking=no {{ user }}@{{ inventory_hostname }}
+    responses:
+      (?i)password: '{{ ssh_password }}'
+  delegate_to: 127.0.0.1
